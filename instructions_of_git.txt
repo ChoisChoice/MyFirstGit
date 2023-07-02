@@ -1,0 +1,101 @@
+1. 버전 관리 시스템(Version Control System)
+- 시간에 따른 파일 변경을 버전으로 기록 및 추적하는 분산형 버전 시스템.
+- 여러 개발자들의 하나의 파일을 공유하며 동시 작업 가능.
+- 그 중 대표적인 것이 Git
+
+2. git 초기 설정
+- git config --global user.name '이름'
+- git config --global user.email '이메일'
+- git config --list : 설정한 값이 잘 지정되어 있는지 확인.
+- git init : .git이란 숨긴 폴더가 생성.
+
+    * rm rf '파일명' : '파일명'에 해당하는 파일 지우기.
+
+3. git 기본 설정
+- git config --global init.defaultbranch main : branch를 main으로 변경(브랜치명 수정)
+- git branch -M main : branch를 main으로 변경.
+
+    ※ 명령어에 대한 설명
+        * 홈페이지에서 보기 => git help <동사>
+        * 홈페이지에서 보기 => git <동사> --help
+        * 프롬프트 안에서 보기 => git config -h
+
+4. 파일이 존재할 수 있는 3가지 상태
+- 수정된(modified) : 파일을 변경했지만 DB에 커밋하지 않은 상태.
+- 스테이징된(staged) : 현재 버전의 수정된 파일을 다음 커밋 스냅샷에 포함하도록 표시한 상태.
+- 커밋된(committed) : 데이터가 로컬 DB에 안전하게 저장된 상태.
+
+    ※ Working Directory(Working Tree) --add--> Staging Area --commit--> .git Directory(Repository)
+        * Working Tree : 프로젝트의 한 버전을 단일 체크아웃.
+        * Staging Area : 다음 커밋에 포함될 내용을 저장.
+        * Git Directory : Git이 프로젝트의 메타데이터와 객체 DB를 저장하는 곳, 다른 컴퓨터에서 저장소를 복제할 때 복사는 곳.
+
+5. Git의 주요 작업 흐름
+- 첫번째, Working Tree에서 파일 수정.
+    - git status
+        - 해당 Working Tree의 상태를 확인할 수 있음.
+        - 수정되었거나 새로운 파일이 발견되면 해당 목록을 붉은 글씨로 보여줌.
+    - git add <파일>ㅇ
+        - 해당 <파일>을 버전에 적용함. -> Staging Area에 올림.
+        - 부분이 아닌 전체 파일을 해당 버전으로 만들고 싶을 때 다음과 같이 사용함. => git add .
+    - git rm --cached <파일>
+        - Staging Area에서 <파일>을 Unstaging 함.
+
+- 두번째, 커밋에 포함될 변경사항만 선택적으로 add하여 Staging Area에 올림.
+    - git commit -m <"메세지"> or git commit --message <"메세지">
+        - .git(Git Repository)에 변경사항(파일에 대한 메타데이터)과 객체 데이터베이스가 압축을 통해서 저장됨.
+        - 즉, 버전으로서 파일의 변경사항을 기록하게 된다.
+
+- 세번째, commit을 하여 Staging Area에 있는 파일을 Git Directory에 스냅샷으로 저장.
+    - git log --gragh
+        - 이전 커밋들을 확인 할 수 있음.
+        - 커밋된 파일에 대한 해쉬값 그리고 작성자와 이메일 및 날짜는 물론 커밋 메시지를 확인할 수 있음.
+
+6. Commit에 대한 추가 학습
+- .git(Git Repository)에 파일의 스냅샷(SnapShot)을 기록하는 것.
+- Git은 커밋할 때마다 디렉토리 전체를 복사하지 않음. -> 각 커밋은 저장소의 이전 버전과 다음 버전의 변경내역(delta)을 저장하는 방식.
+- 그래서 대부분의 커밋이 그 커밋 위의 부모 커밋을 가리킴.
+
+7. Snapshot에 대한 추가 학습
+- 특정 순간을 캡쳐하여 기록하는 것을 의미함.
+- 과거의 한 시점으로부터 변경된 내용에 대해 기록을 남기는 것을 의미함.
+
+8. Commit을 해야하는 시점
+- 기능 추가 : 해당 기능과 관련된 파일들을 하나의 commit으로 분리할 수 있음.
+- 버그 수정 : 해당 버그에 대해 관련된 코드를 수정한 부분을 하나의 commit으로 분리할 수 있음.
+- 리펙토링 : 리펙토링한 코드들을 하나의 commit으로 분리할 수 있음.
+- 인터페이스 변경 : 인터페이스 변경에 관련된 코드와 파일을 하나의 commit으로 분리할 수 있음.
+- 기타 변경 사항 : 코드 스타일 수정, 주석 추가, 문서 업데이트 등.
+
+9. git commit의 옵션 => 자세한 내용은 git commit -h 에서 확인 가능.
+- -m <"메시지"> or --message <"메시지"> : 커밋 메시지를 직접 명령어에 포함시킴.
+- -a or --all : 모든 파일을 자동으로 Staging하고 Commit함. -> git add 명령어 생략 가능.
+- --amend : 최신 commit을 수정. 이전 커밋에 새로운 변경사항을 추가하거나 커밋 메시지를 변경할 수 있음.
+
+10. VS Code에서 commit 메시지 수정하는 방법
+- git config --global core.editor "code -w"
+
+11. Github는 온라인에 저장하기 위한 서비스
+
+12. Git에 Github 연동하기
+- 첫번째, Uniform Resource Identifier(URI)을 아래와 같이 생성한다.
+    - https://<Token Key>@<Repository HTTPS Address>
+- 두번째, URI 주소를 등록한다.
+    - git remote add origin <URI>
+- 세번째, 원격 저장소 명칭 및 주소를 확인한다.
+    - git remote -v
+- 네번째, GitHub에 업데이트한다.
+    - git push -u origin main : 위에서 URI 주소가 여기서 origin을 뜻함.
+
+
+
+
+
+
+
+
+
+
+
+
+
