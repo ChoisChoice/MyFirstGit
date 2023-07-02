@@ -9,7 +9,7 @@
 - git config --list : 설정한 값이 잘 지정되어 있는지 확인.
 - git init : .git이란 숨긴 폴더가 생성.
 
-    * rm rf '파일명' : '파일명'에 해당하는 파일 지우기.
+    ※ rm rf '파일명' : '파일명'에 해당하는 파일 지우기.
 
 3. git 기본 설정
 - git config --global init.defaultbranch main : branch를 main으로 변경(브랜치명 수정)
@@ -78,7 +78,7 @@
 11. Github는 온라인에 저장하기 위한 서비스
 
 12. Git에 Github 연동하기
-- 첫번째, Uniform Resource Identifier(URI)을 아래와 같이 생성한다.
+- 첫번째, Uniform Resource Identifier(URI)을 생성한다.
     - https://<Token Key>@<Repository HTTPS Address>
 - 두번째, URI 주소를 등록한다.
     - git remote add origin <URI>
@@ -86,7 +86,23 @@
     - git remote -v
 - 네번째, GitHub에 업데이트한다.
     - git push -u origin main : 위에서 URI 주소가 여기서 origin을 뜻함.
+    - push : Local의 파일을 온라인(GitHub)에 업데이트함.
 
+    ※ 원격저장소 주소(URI) 수정하는 방법
+        * git remote set_url origin <새로운 URI 주소>
+
+13. Git에서 특정 버전의 특정 파일 내용을 확인
+- git show <버전>:<파일경로>
+    - 버전 : 커밋 해시(git log 를 통해 확인 가능), 브랜치 이름, 태그 등
+    - 파일경로 : 상대 또는 절대 경로
+
+14. Git에서 변경된 내용을 비교
+- git diff : 현재 Working Tree와 Staging Area 사이의 변경 내용을 확인.
+- git diff --staged : Staging Area와 최신 Commit 사이의 변경 내용을 확인.
+- git diff <commit-hash> : 현재 Working Tree와 최신 Commit 사이의 변경 내용을 확인.
+- 위의 코드를 사용하면 변경된 내용을 비교, 코드 리뷰, 오류 확인등의 작업을 할 수 있다.
+
+    ※ git restore --staged <파일> : Staging Area에 있는 파일 Unstaging.
 
 
 
