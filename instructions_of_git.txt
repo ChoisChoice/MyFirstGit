@@ -3,7 +3,7 @@
 - 여러 개발자들의 하나의 파일을 공유하며 동시 작업 가능.
 - 그 중 대표적인 것이 Git
 
-2. git 초기 설정
+2. Git 초기 설정
 - git config --global user.name '이름'
 - git config --global user.email '이메일'
 - git config --list : 설정한 값이 잘 지정되어 있는지 확인.
@@ -11,7 +11,7 @@
 
     ※ rm rf '파일명' : '파일명'에 해당하는 파일 지우기.
 
-3. git 기본 설정
+3. Git 기본 설정
 - git config --global init.defaultbranch main : branch를 main으로 변경(브랜치명 수정)
 - git branch -M main : branch를 main으로 변경.
 
@@ -103,6 +103,15 @@
 - 위의 코드를 사용하면 변경된 내용을 비교, 코드 리뷰, 오류 확인등의 작업을 할 수 있다.
 
     ※ git restore --staged <파일> : Staging Area에 있는 파일 Unstaging.
+
+15. git clone : Git 저장소를 복제하는 명령. 즉, 원격 저장소에서 프로젝트의 모든 파일과 버전 관리 정보를 가져와 로컬 시스템에 동일한 저장소를 생성함.
+- git clone <원격 저장소 경로>
+   - 원격 저장소 경로 : 복제하려는 Git 저장소의 위치(예시 : Github의 URL)
+- 예를 들면, 외부에서 작성한 파일을 Github에 push하고 집에서 Github에 저장된 파일을 가져올 때 clone을 사용함.
+- 그래서 git clone을 사용하여 프로젝트를 복제하면 로컬 시스템에서 독립적으로 작업할 수 있으며, 버전관리 및 협업을 수행할 수 있음.
+- 복제된 저장소는 원격 저장소와 동기화를 유지하며, 필요에 따라 새로운 브랜치를 생성하거나 변경 내용을 커밋하여 프로젝트를 업데이트할 수 있음.
+
+
 
 
 
